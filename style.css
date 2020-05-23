@@ -1,36 +1,50 @@
+
+body{
+    background-color: #2D2C2E;
+}
 .container {
     display: flex;
     flex-flow: column nowrap;
-    
-    
     justify-content: space-around;
-    
     padding: 0;
     margin: 0;
     max-width: 574px;
     height: auto;
-
   }
   .type {
     background: tomato;
     width: auto;
     height: 50px;
-    text-align: center;
   }
   .calculator {
-    background: blue;;
     width: auto;
-    height: 323px;
     text-align: center;
     color: white;
-  }
-  .button.top{
-      background-color: #414A6F;
-  }
-  .button{
-      background-color: #605F60;
+    font-family: "Lucida Console", monospace;
+    font-weight: 100;
+
 
   }
+  .button.top{
+    background-color: #414A6F;
+  }
+
   .button.right{
-      background-color: #FF9F0B;
+    background-color: #FF9F0B;
+    font-size: 30px;
+  }
+
+  .button{
+    background-color: #605F60;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+
+  }
+  
+
+  #display {
+    justify-self: end;
+    align-self: end;
+    font-size: 56px;
   }
