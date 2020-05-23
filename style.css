@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    flex-flow: column nowrap;
+    
+    
+    justify-content: space-around;
+    
+    padding: 0;
+    margin: 0;
+    max-width: 574px;
+    height: auto;
+
+  }
+  .type {
+    background: tomato;
+    width: auto;
+    height: 50px;
+    text-align: center;
+  }
+  .calculator {
+    background: blue;;
+    width: auto;
+    height: 323px;
+    text-align: center;
+    color: white;
+  }
+  .button.top{
+      background-color: #414A6F;
+  }
+  .button{
+      background-color: #605F60;
+
+  }
+  .button.right{
+      background-color: #FF9F0B;
+  }
