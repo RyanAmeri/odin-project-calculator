@@ -48,25 +48,45 @@ function drawBasicCalculator(){
     const btnAC = document.createElement("div");
     btnAC.id = "btnAC";
     btnAC.className = "button top";
-    btnAC.textContent = "AC";
+    const bAC = document.createElement("button");
+    bAC.id = "bAC";
+    bAC.className = "btns";
+    bAC.type = "button";
+    bAC.textContent = "AC";
+    btnAC.appendChild(bAC);
     calculator.appendChild(btnAC);
     
     const btnInverse = document.createElement("div");
     btnInverse.id = "btnInverse";
     btnInverse.className = "button top";
-    btnInverse.textContent = "+/-";
+    const bInverse = document.createElement("button");
+    bInverse.id = "bInverse";
+    bInverse.className = "btns";
+    bInverse.type = "button";
+    bInverse.textContent = "+/-";
+    btnInverse.appendChild(bInverse);
     calculator.appendChild(btnInverse);
 
     const btnPercent = document.createElement("div");
     btnPercent.id = "btnPercent";
     btnPercent.className = "button top";
-    btnPercent.textContent = "\u0025";
+    const bPercent = document.createElement("button");
+    bPercent.id = "bPercent";
+    bPercent.className = "btns";
+    bPercent.type = "button";
+    bPercent.textContent = "\u0025";
+    btnPercent.appendChild(bPercent);    
     calculator.appendChild(btnPercent);
 
     const btnDivide = document.createElement("div");
     btnDivide.id = "btnDivide";
     btnDivide.className = "button right";
-    btnDivide.textContent = "\u00F7";
+    const bDivide = document.createElement("button");
+    bDivide.id = "bDivide";
+    bDivide.className = "btns";
+    bDivide.type = "button";
+    bDivide.textContent = "\u00F7";
+    btnDivide.appendChild(bDivide);    
     calculator.appendChild(btnDivide);
     
     //The button are drawn one by one
@@ -74,25 +94,45 @@ function drawBasicCalculator(){
     const btn7 = document.createElement("div");
     btn7.id = "btn7";
     btn7.className = "button";
-    btn7.textContent = "7";
+    const b7 = document.createElement("button");
+    b7.id = "b7";
+    b7.className = "btns";
+    b7.type = "button";
+    b7.textContent = "7";
+    btn7.appendChild(b7);       
     calculator.appendChild(btn7);
     
     const btn8 = document.createElement("div");
     btn8.id = "btn8";
     btn8.className = "button";
-    btn8.textContent = "8";
+    const b8 = document.createElement("button");
+    b8.id = "b8";
+    b8.className = "btns";
+    b8.type = "button";
+    b8.textContent = "8";
+    btn8.appendChild(b8);       
     calculator.appendChild(btn8);
 
     const btn9 = document.createElement("div");
     btn9.id = "btn9";
     btn9.className = "button";
-    btn9.textContent = "9";
+    const b9 = document.createElement("button");
+    b9.id = "b9";
+    b9.className = "btns";
+    b9.type = "button";
+    b9.textContent = "9";
+    btn9.appendChild(b9);       
     calculator.appendChild(btn9);
 
     const btnMultiply = document.createElement("div");
     btnMultiply.id = "btnMultiply";
     btnMultiply.className = "button right";
-    btnMultiply.textContent = "\u00D7";
+    const bMultiply = document.createElement("button");
+    bMultiply.id = "bMultiply";
+    bMultiply.className = "btns";
+    bMultiply.type = "button";
+    bMultiply.textContent = "\u00D7";
+    btnMultiply.appendChild(bMultiply);       
     calculator.appendChild(btnMultiply);
 
     //The button are drawn one by one
@@ -100,25 +140,45 @@ function drawBasicCalculator(){
     const btn4 = document.createElement("div");
     btn4.id = "btn4";
     btn4.className = "button";
-    btn4.textContent = "4";
+    const b4 = document.createElement("button");
+    b4.id = "b4";
+    b4.className = "btns";
+    b4.type = "button";
+    b4.textContent = "4";
+    btn4.appendChild(b4);           
     calculator.appendChild(btn4);
     
     const btn5 = document.createElement("div");
     btn5.id = "btn5";
     btn5.className = "button";
-    btn5.textContent = "5";
+    const b5 = document.createElement("button");
+    b5.id = "b5";
+    b5.className = "btns";
+    b5.type = "button";
+    b5.textContent = "5";
+    btn5.appendChild(b5);       
     calculator.appendChild(btn5);
 
     const btn6 = document.createElement("div");
     btn6.id = "btn6";
     btn6.className = "button";
-    btn6.textContent = '6';
+    const b6 = document.createElement("button");
+    b6.id = "b6";
+    b6.className = "btns";
+    b6.type = "button";
+    b6.textContent = "6";
+    btn6.appendChild(b6);       
     calculator.appendChild(btn6);
 
     const btnSubtract = document.createElement("div");
     btnSubtract.id = "btnSubtract";
     btnSubtract.className = "button right";
-    btnSubtract.textContent = "-";
+    const bSubtract = document.createElement("button");
+    bSubtract.id = "bSubtract";
+    bSubtract.className = "btns";
+    bSubtract.type = "button";
+    bSubtract.textContent = "-";
+    btnSubtract.appendChild(bSubtract);       
     calculator.appendChild(btnSubtract);
 
     //The button are drawn one by one
@@ -126,25 +186,45 @@ function drawBasicCalculator(){
     const btn1 = document.createElement("div");
     btn1.id = "btn1";
     btn1.className = "button";
-    btn1.textContent = "1";
+    const b1 = document.createElement("button");
+    b1.id = "b1";
+    b1.className = "btns";
+    b1.type = "button";
+    b1.textContent = "1";
+    btn1.appendChild(b1);       
     calculator.appendChild(btn1);
     
     const btn2 = document.createElement("div");
     btn2.id = "btn2";
     btn2.className = "button";
-    btn2.textContent = "2";
+    const b2 = document.createElement("button");
+    b2.id = "b2";
+    b2.className = "btns";
+    b2.type = "button";
+    b2.textContent = "2";
+    btn2.appendChild(b2);       
     calculator.appendChild(btn2);
 
     const btn3 = document.createElement("div");
     btn3.id = "btn3";
     btn3.className = "button";
-    btn3.textContent = "3";
+    const b3 = document.createElement("button");
+    b3.id = "b3";
+    b3.className = "btns";
+    b3.type = "button";
+    b3.textContent = "3";
+    btn3.appendChild(b3);       
     calculator.appendChild(btn3);
 
     const btnAdd = document.createElement("div");
     btnAdd.id = "btnAdd";
     btnAdd.className = "button right";
-    btnAdd.textContent = "+";
+    const bAdd = document.createElement("button");
+    bAdd.id = "bAdd";
+    bAdd.className = "btns";
+    bAdd.type = "button";
+    bAdd.textContent = "+";
+    btnAdd.appendChild(bAdd);       
     calculator.appendChild(btnAdd);
    
     //The button are drawn one by one
@@ -155,17 +235,26 @@ function drawBasicCalculator(){
     cell0.style.gridColumnEnd = 3;
     cell0.style.display = "grid";
     cell0.style.gridTemplateColumns = "repeat(2, 1fr)";
-    
-    
+        
     const btn0 = document.createElement("div");
     btn0.id = "btn0";
     btn0.className = "button";
-    btn0.textContent = "0";
+    const b0 = document.createElement("button");
+    b0.id = "b0";
+    b0.className = "btns";
+    b0.type = "button";
+    b0.textContent = "0";
+    btn0.appendChild(b0);
     cell0.appendChild(btn0);
     
     const btnEmpty = document.createElement("div");
     btnEmpty.id = "btnEmpty";
     btnEmpty.className = "button";
+    const bEmpty = document.createElement("button");
+    bEmpty.id = "bEmpty";
+    bEmpty.className = "btns";
+    bEmpty.type = "button";
+    btnEmpty.appendChild(bEmpty);
     cell0.appendChild(btnEmpty);
     calculator.appendChild(cell0);
 
@@ -174,13 +263,23 @@ function drawBasicCalculator(){
     const btnDot = document.createElement("div");
     btnDot.id = "btnDot";
     btnDot.className = "button";
-    btnDot.textContent = ".";
+    const bDot = document.createElement("button");
+    bDot.id = "bDot";
+    bDot.className = "btns";
+    bDot.type = "button";
+    bDot.textContent = ".";
+    btnDot.appendChild(bDot);
     calculator.appendChild(btnDot);
 
     const btnEqual = document.createElement("div");
     btnEqual.id = "btnEqual";
     btnEqual.className = "button right";
-    btnEqual.textContent = "\u003D";
+    const bEqual = document.createElement("button");
+    bEqual.id = "bEqual";
+    bEqual.className = "btns";
+    bEqual.type = "button";
+    bEqual.textContent = "\u003D";
+    btnEqual.appendChild(bEqual);
     calculator.appendChild(btnEqual);
 
 }
