@@ -16,7 +16,7 @@ body{
   .type {
     background: tomato;
     width: auto;
-    height: 50px;
+    height: 0px;
   }
   .calculator {
     width: auto;

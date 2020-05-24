@@ -1,3 +1,10 @@
+let op1 = undefined;
+let op2 = undefined;
+let operatorPressed = false;
+let numberPressed = false;
+let previousOperand = undefined;
+
+
 //implement basic maths functions
 function add (num1, num2){
     return num1 + num2;
@@ -9,24 +16,28 @@ function multiply (num1, num2){
     return num1 * num2;
 }
 function divide (num1, num2){
-    return num1 / num2;
+    return num2 ? num1 / num2 : "Not a number"; 
 }
 //implement the switch operator that calls the maths functions
 function operate(operator, num1, num2){
+    num1 = Number(num1);
+    num2 = Number(num2);
+    let result;
     switch(operator) {
-        case 'add': 
-            add(num1, num2);
+        case 'bAdd': 
+            result = add(num1, num2);
             break;
-        case 'subtract': 
-            subtract(num1, num2);
+        case 'bSubtract': 
+            result = subtract(num1, num2);
             break;
-        case 'multiply': 
-            multiply(num1, num2);
+        case 'bMultiply': 
+            result = multiply(num1, num2);
             break;
-        case 'divide': 
-            divide(num1, num2);
+        case 'bDivide': 
+            result = divide(num1, num2);
             break;
     }
+    return result;
 }
 //Draw calculator with CSS in JS
 function drawBasicCalculator(){
@@ -41,7 +52,7 @@ function drawBasicCalculator(){
     display.id = "display";
     display.style.gridColumnStart = 1;
     display.style.gridColumnEnd = 5;
-    display.textContent = "7777000"
+    display.textContent = ""
     calculator.appendChild(display);
     //The button are drawn one by one
     //Row1
@@ -50,7 +61,7 @@ function drawBasicCalculator(){
     btnAC.className = "button top";
     const bAC = document.createElement("button");
     bAC.id = "bAC";
-    bAC.className = "btns";
+    bAC.className = "btns opt";
     bAC.type = "button";
     bAC.textContent = "AC";
     btnAC.appendChild(bAC);
@@ -61,7 +72,7 @@ function drawBasicCalculator(){
     btnInverse.className = "button top";
     const bInverse = document.createElement("button");
     bInverse.id = "bInverse";
-    bInverse.className = "btns";
+    bInverse.className = "btns opt";
     bInverse.type = "button";
     bInverse.textContent = "+/-";
     btnInverse.appendChild(bInverse);
@@ -72,7 +83,7 @@ function drawBasicCalculator(){
     btnPercent.className = "button top";
     const bPercent = document.createElement("button");
     bPercent.id = "bPercent";
-    bPercent.className = "btns";
+    bPercent.className = "btns opt";
     bPercent.type = "button";
     bPercent.textContent = "\u0025";
     btnPercent.appendChild(bPercent);    
@@ -83,7 +94,7 @@ function drawBasicCalculator(){
     btnDivide.className = "button right";
     const bDivide = document.createElement("button");
     bDivide.id = "bDivide";
-    bDivide.className = "btns";
+    bDivide.className = "btns opt";
     bDivide.type = "button";
     bDivide.textContent = "\u00F7";
     btnDivide.appendChild(bDivide);    
@@ -96,7 +107,7 @@ function drawBasicCalculator(){
     btn7.className = "button";
     const b7 = document.createElement("button");
     b7.id = "b7";
-    b7.className = "btns";
+    b7.className = "btns num";
     b7.type = "button";
     b7.textContent = "7";
     btn7.appendChild(b7);       
@@ -107,7 +118,7 @@ function drawBasicCalculator(){
     btn8.className = "button";
     const b8 = document.createElement("button");
     b8.id = "b8";
-    b8.className = "btns";
+    b8.className = "btns num";
     b8.type = "button";
     b8.textContent = "8";
     btn8.appendChild(b8);       
@@ -118,7 +129,7 @@ function drawBasicCalculator(){
     btn9.className = "button";
     const b9 = document.createElement("button");
     b9.id = "b9";
-    b9.className = "btns";
+    b9.className = "btns num";
     b9.type = "button";
     b9.textContent = "9";
     btn9.appendChild(b9);       
@@ -129,7 +140,7 @@ function drawBasicCalculator(){
     btnMultiply.className = "button right";
     const bMultiply = document.createElement("button");
     bMultiply.id = "bMultiply";
-    bMultiply.className = "btns";
+    bMultiply.className = "btns opt";
     bMultiply.type = "button";
     bMultiply.textContent = "\u00D7";
     btnMultiply.appendChild(bMultiply);       
@@ -142,7 +153,7 @@ function drawBasicCalculator(){
     btn4.className = "button";
     const b4 = document.createElement("button");
     b4.id = "b4";
-    b4.className = "btns";
+    b4.className = "btns num";
     b4.type = "button";
     b4.textContent = "4";
     btn4.appendChild(b4);           
@@ -153,7 +164,7 @@ function drawBasicCalculator(){
     btn5.className = "button";
     const b5 = document.createElement("button");
     b5.id = "b5";
-    b5.className = "btns";
+    b5.className = "btns num";
     b5.type = "button";
     b5.textContent = "5";
     btn5.appendChild(b5);       
@@ -164,7 +175,7 @@ function drawBasicCalculator(){
     btn6.className = "button";
     const b6 = document.createElement("button");
     b6.id = "b6";
-    b6.className = "btns";
+    b6.className = "btns num";
     b6.type = "button";
     b6.textContent = "6";
     btn6.appendChild(b6);       
@@ -175,7 +186,7 @@ function drawBasicCalculator(){
     btnSubtract.className = "button right";
     const bSubtract = document.createElement("button");
     bSubtract.id = "bSubtract";
-    bSubtract.className = "btns";
+    bSubtract.className = "btns opt";
     bSubtract.type = "button";
     bSubtract.textContent = "-";
     btnSubtract.appendChild(bSubtract);       
@@ -188,7 +199,7 @@ function drawBasicCalculator(){
     btn1.className = "button";
     const b1 = document.createElement("button");
     b1.id = "b1";
-    b1.className = "btns";
+    b1.className = "btns num";
     b1.type = "button";
     b1.textContent = "1";
     btn1.appendChild(b1);       
@@ -199,7 +210,7 @@ function drawBasicCalculator(){
     btn2.className = "button";
     const b2 = document.createElement("button");
     b2.id = "b2";
-    b2.className = "btns";
+    b2.className = "btns num";
     b2.type = "button";
     b2.textContent = "2";
     btn2.appendChild(b2);       
@@ -210,7 +221,7 @@ function drawBasicCalculator(){
     btn3.className = "button";
     const b3 = document.createElement("button");
     b3.id = "b3";
-    b3.className = "btns";
+    b3.className = "btns num";
     b3.type = "button";
     b3.textContent = "3";
     btn3.appendChild(b3);       
@@ -221,7 +232,7 @@ function drawBasicCalculator(){
     btnAdd.className = "button right";
     const bAdd = document.createElement("button");
     bAdd.id = "bAdd";
-    bAdd.className = "btns";
+    bAdd.className = "btns opt";
     bAdd.type = "button";
     bAdd.textContent = "+";
     btnAdd.appendChild(bAdd);       
@@ -241,7 +252,7 @@ function drawBasicCalculator(){
     btn0.className = "button";
     const b0 = document.createElement("button");
     b0.id = "b0";
-    b0.className = "btns";
+    b0.className = "btns num";
     b0.type = "button";
     b0.textContent = "0";
     btn0.appendChild(b0);
@@ -252,20 +263,18 @@ function drawBasicCalculator(){
     btnEmpty.className = "button";
     const bEmpty = document.createElement("button");
     bEmpty.id = "bEmpty";
-    bEmpty.className = "btns";
+    bEmpty.className = "btns num";
     bEmpty.type = "button";
     btnEmpty.appendChild(bEmpty);
     cell0.appendChild(btnEmpty);
     calculator.appendChild(cell0);
-
-    
     
     const btnDot = document.createElement("div");
     btnDot.id = "btnDot";
     btnDot.className = "button";
     const bDot = document.createElement("button");
     bDot.id = "bDot";
-    bDot.className = "btns";
+    bDot.className = "btns num";
     bDot.type = "button";
     bDot.textContent = ".";
     btnDot.appendChild(bDot);
@@ -276,7 +285,7 @@ function drawBasicCalculator(){
     btnEqual.className = "button right";
     const bEqual = document.createElement("button");
     bEqual.id = "bEqual";
-    bEqual.className = "btns";
+    bEqual.className = "btns opt";
     bEqual.type = "button";
     bEqual.textContent = "\u003D";
     btnEqual.appendChild(bEqual);
@@ -284,4 +293,106 @@ function drawBasicCalculator(){
 
 }
 
+function addEventListeners(){
+    //This function adds event listeners to all the required elements. 
+    //It uses event bubbling 
+    //Taken inspiration from https://dev.to/baransel/how-to-add-an-event-listener-to-multiple-elements-in-javascript-aco
+    const operator = [...document.querySelectorAll('.opt')];
+    const nums = [...document.querySelectorAll('.num')];
+    const body = document.body;
+    let opt = "";
+    body.addEventListener('click', event => {
+        //Handle when operators are clicked
+        if (operator.includes(event.target)) {
+
+            /* The first check is to see if a number has been pressed before. 
+            This is to handle the case where user presses two operands one after the other, 
+            the second one should override the first one, but no operation should take place*/
+
+            if (numberPressed){
+                /* 
+            There are two cases, either op1 is already set, or it's not. If op1 is not set, we set op1 and trigger operator pressed. 
+            If Op1 is already set, we set op2, calculate and display
+            */
+
+                if(op1){
+                    //Op1 is already set
+                    // This is where we do the main calculation
+                    op2 = getDisplay();
+                    let res;
+                    //Check to see if a previous operand has been set. 
+                    // We will pass the previous operand to operate()
+                    //This is to handle where  a user strings a bunch of operations after each other
+                    if (previousOperand){
+                        res =  operate(previousOperand, op1, op2);
+                    }
+                    else {
+                        res = operate(event.target.id, op1, op2);
+                    
+                    }
+                    previousOperand = event.target.id;
+                    clearDisplay();
+                    setDisplay(res);
+                    op1 = getDisplay();
+
+                }
+                else {
+                    //When Op1 is not set
+                    op1 = getDisplay();
+                    previousOperand = event.target.id;
+                }
+            } 
+            else { 
+                // This is to handle a previously another operator was clicked, not a number
+                previousOperand = event.target.id;
+
+            }
+            numberPressed = false;
+            operatorPressed = true;    
+        }
+        else if (nums.includes(event.target)) {
+            numberPressed = true;
+            //Handle when numbers are clicked
+            // There are two cases, either the operator is pressed, or it's not. 
+            // If it is pressed, we clear the display, set the display anew 
+            // If operator is not pressed, we just add the number to display
+            if (operatorPressed){
+                clearDisplay();
+                setDisplay(event.target.textContent);
+                //This is to handle the empty button that's equivalent to 0
+                if (event.target.id === 'bEmpty')
+                    setDisplay(b0.textContent);
+                operatorPressed = false;
+
+            }
+            else {
+                setDisplay(event.target.textContent);
+                //This is to handle the empty button that's equivalent to 0
+                if (event.target.id === 'bEmpty')
+                    setDisplay(b0.textContent);
+            }    
+        }
+    });
+}
+
+function setDisplay(str){
+    const display = document.getElementById("display");
+    //Getting rid of the initial 0
+    //if (display.textContent === "0")
+    //    clearDisplay();
+    display.textContent = getDisplay() + str;
+    
+}
+function getDisplay(){
+    const display = document.getElementById("display");
+    return display.textContent;
+}
+
+function clearDisplay(){
+    const display = document.getElementById("display");
+    display.textContent = "";
+}
+
+
 drawBasicCalculator();
+addEventListeners();
