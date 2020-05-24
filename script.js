@@ -334,6 +334,13 @@ function addEventListeners(){
                     clearDisplay();
                     setDisplay(res);
                     op1 = getDisplay();
+                    //This is to handle when equal sign has been pressed
+                    if (previousOperand === 'bEqual'){
+                        previousOperand = undefined;
+//                        op1 = undefined;
+                    }
+                        
+
 
                 }
                 else {
@@ -344,6 +351,7 @@ function addEventListeners(){
             } 
             else { 
                 // This is to handle a previously another operator was clicked, not a number
+                op1 - getDisplay();
                 previousOperand = event.target.id;
 
             }
