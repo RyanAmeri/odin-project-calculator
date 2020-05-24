@@ -37,6 +37,8 @@ function operate(operator, num1, num2){
             result = divide(num1, num2);
             break;
     }
+    if (isNaN(result))
+        result = "Not a number";
     return result;
 }
 //Draw calculator with CSS in JS
@@ -305,58 +307,85 @@ function addEventListeners(){
         //Handle when operators are clicked
         if (operator.includes(event.target)) {
 
-            /* The first check is to see if a number has been pressed before. 
-            This is to handle the case where user presses two operands one after the other, 
-            the second one should override the first one, but no operation should take place*/
+            //Handle AC Button, clear everything
+            if (event.target.id === 'bAC'){
+                clearDisplay();
+                setDisplay("0");
+                op1 = undefined;
+                op2 = undefined;
+                operatorPressed = false;
+                numberPressed = false;
+                previousOperand = undefined;
+            }
+            if (event.target.id === 'bAdd' || event.target.id === 'bSubtract' || event.target.id === 'bMultiply' ||event.target.id === 'bDivide'){
 
-            if (numberPressed){
-                /* 
-            There are two cases, either op1 is already set, or it's not. If op1 is not set, we set op1 and trigger operator pressed. 
-            If Op1 is already set, we set op2, calculate and display
-            */
+                /* The first check is to see if a number has been pressed before. 
+                This is to handle the case where user presses two operands one after the other, 
+                the second one should override the first one, but no operation should take place*/
 
-                if(op1){
-                    //Op1 is already set
-                    // This is where we do the main calculation
-                    op2 = getDisplay();
-                    let res;
-                    //Check to see if a previous operand has been set. 
-                    // We will pass the previous operand to operate()
-                    //This is to handle where  a user strings a bunch of operations after each other
-                    if (previousOperand){
-                        res =  operate(previousOperand, op1, op2);
-                    }
+                if (numberPressed){
+                    /* 
+                There are two cases, either op1 is already set, or it's not. If op1 is not set, we set op1 and trigger operator pressed. 
+                If Op1 is already set, we set op2, calculate and display
+                */
+
+                    if(op1){
+                        //Op1 is already set
+                        // This is where we do the main calculation
+                        //First check to see if previous operand was equal, in which case we basically ignore
+                        if (previousOperand === 'bEqual'){
+                            op1 = getDisplay();
+                            previousOperand = event.target.id;
+
+                        }   
+                        else {
+                            op2 = getDisplay();
+                            let res;
+                            //Check to see if a previous operand has been set. 
+                            // We will pass the previous operand to operate()
+                            //This is to handle where  a user strings a bunch of operations after each other
+                            if (previousOperand){
+                                res =  operate(previousOperand, op1, op2);
+                            }
+                            else {
+                                res = operate(event.target.id, op1, op2);
+                            
+                            }
+                            previousOperand = event.target.id;
+                            clearDisplay();
+                            setDisplay(res);
+                            op1 = getDisplay();
+                        }
+
+                    }    
                     else {
-                        res = operate(event.target.id, op1, op2);
-                    
+                        //When Op1 is not set
+                        op1 = getDisplay();
+                        previousOperand = event.target.id;
                     }
+                } 
+                else { 
+                    // This is to handle a previously another operator was clicked, not a number
+                    op1 - getDisplay();
                     previousOperand = event.target.id;
+
+                }
+                numberPressed = false;
+                operatorPressed = true;                
+            }
+            if (event.target.id === 'bEqual'){
+                if (op1 && previousOperand){
+                    op2 = getDisplay();
+                    let res = operate(previousOperand, op1, op2);
+                    previousOperand = 'bEqual';
                     clearDisplay();
                     setDisplay(res);
                     op1 = getDisplay();
-                    //This is to handle when equal sign has been pressed
-                    if (previousOperand === 'bEqual'){
-                        previousOperand = undefined;
-//                        op1 = undefined;
-                    }
-                        
-
-
+                    numberPressed = false;
+                    operatorPressed = true;                    
                 }
-                else {
-                    //When Op1 is not set
-                    op1 = getDisplay();
-                    previousOperand = event.target.id;
-                }
-            } 
-            else { 
-                // This is to handle a previously another operator was clicked, not a number
-                op1 - getDisplay();
-                previousOperand = event.target.id;
-
             }
-            numberPressed = false;
-            operatorPressed = true;    
+    
         }
         else if (nums.includes(event.target)) {
             numberPressed = true;
@@ -385,10 +414,7 @@ function addEventListeners(){
 
 function setDisplay(str){
     const display = document.getElementById("display");
-    //Getting rid of the initial 0
-    //if (display.textContent === "0")
-    //    clearDisplay();
-    display.textContent = getDisplay() + str;
+    display.textContent === '0' ? display.textContent = str : display.textContent = getDisplay() + str;
     
 }
 function getDisplay(){
