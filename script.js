@@ -307,6 +307,9 @@ function addEventListeners(){
         //Handle when operators are clicked
         if (operator.includes(event.target)) {
 
+            //Re-enable equal button
+            bEqual.disabled = false;
+
             //Handle AC Button, clear everything
             if (event.target.id === 'bAC'){
                 clearDisplay();
@@ -366,7 +369,7 @@ function addEventListeners(){
                 } 
                 else { 
                     // This is to handle a previously another operator was clicked, not a number
-                    op1 - getDisplay();
+                    op1 = getDisplay();
                     previousOperand = event.target.id;
 
                 }
@@ -375,15 +378,19 @@ function addEventListeners(){
             }
             if (event.target.id === 'bEqual'){
                 if (op1 && previousOperand){
+                    // disable equal button once it has been pressed once. Pressing it repeatedly has undefined behaviour
+                    // and can cause errors
+                    bEqual.disabled = true;
+
                     op2 = getDisplay();
                     let res = operate(previousOperand, op1, op2);
                     previousOperand = 'bEqual';
                     clearDisplay();
                     setDisplay(res);
-                    op1 = getDisplay();
-                    numberPressed = false;
-                    operatorPressed = true;                    
+                    op1 = getDisplay();  
                 }
+                numberPressed = false;
+                operatorPressed = true;
             }
     
         }
