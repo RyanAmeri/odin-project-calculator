@@ -39,6 +39,9 @@ function operate(operator, num1, num2){
     }
     if (isNaN(result))
         result = "Not a number";
+    if (!Number.isInteger(result)){
+        result = round(result, 2);
+    }
     return result;
 }
 //Draw calculator with CSS in JS
@@ -496,6 +499,11 @@ function displayError() {
     numberPressed = false;
     previousOperand = undefined;
 
+}
+
+//Rounding function taken from https://www.jacklmoore.com/notes/rounding-in-javascript/
+function round(value, decimals) {
+    return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 }
 
 drawBasicCalculator();
