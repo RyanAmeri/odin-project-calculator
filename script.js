@@ -309,6 +309,8 @@ function addEventListeners(){
 
             //Re-enable equal button
             bEqual.disabled = false;
+            //Re-enable the dot button
+            bDot.disabled = false;
 
             //Handle AC Button, clear everything
             if (event.target.id === 'bAC'){
@@ -395,8 +397,13 @@ function addEventListeners(){
     
         }
         else if (nums.includes(event.target)) {
-            numberPressed = true;
             //Handle when numbers are clicked
+            numberPressed = true;
+            //First let's make sure that the user can only enter one Dot ('.') character
+            if (event.target.id === 'bDot')
+            {
+                bDot.disabled = true;
+            }
             // There are two cases, either the operator is pressed, or it's not. 
             // If it is pressed, we clear the display, set the display anew 
             // If operator is not pressed, we just add the number to display
