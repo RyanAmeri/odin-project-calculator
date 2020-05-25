@@ -54,7 +54,7 @@ function drawBasicCalculator(){
     display.id = "display";
     display.style.gridColumnStart = 1;
     display.style.gridColumnEnd = 5;
-    display.textContent = ""
+    display.textContent = "0"
     calculator.appendChild(display);
     //The button are drawn one by one
     //Row1
@@ -421,17 +421,44 @@ function addEventListeners(){
 
 function setDisplay(str){
     const display = document.getElementById("display");
-    display.textContent === '0' ? display.textContent = str : display.textContent = getDisplay() + str;
-    
+    let dspTxt = display.textContent;
+    dspTxt === '0' ? dspTxt = str : dspTxt = getDisplay() + str;
+    let wholeTxt = "";
+    let fraction = "";
+    //If the number is larger than 3 digits, start inserting commas into it. 
+    if (dspTxt.length > 3){
+        //Take the integer part of the number, we want to add seperating commas to it. 
+        if (dspTxt.includes('.')){
+            wholeTxt = dspTxt.slice(0,dspTxt.indexOf("."));
+            fraction = dspTxt.slice(dspTxt.indexOf("."),dspTxt.length);
+            wholeTxt = [...wholeTxt];
+        }
+        else {
+            wholeTxt = [...dspTxt];
+        }
+        for (let i = wholeTxt.length; i > 3; i-=3){
+            wholeTxt.splice(i-3, 0, ',');
+        }
+        wholeTxt = wholeTxt.join("");
+        dspTxt = wholeTxt + fraction;
+    }
+    display.textContent = dspTxt;
 }
 function getDisplay(){
     const display = document.getElementById("display");
-    return display.textContent;
+    let dspTxt = display.textContent;
+    dspTxt = stripCommas(dspTxt);
+    return dspTxt;
 }
 
 function clearDisplay(){
     const display = document.getElementById("display");
     display.textContent = "";
+}
+
+function stripCommas(inputText){
+    let stripped = inputText.replace(/,/g, "");
+    return stripped;
 }
 
 
