@@ -429,11 +429,11 @@ function addEventListeners(){
 function setDisplay(str){
     const display = document.getElementById("display");
     let dspTxt = display.textContent;
-    dspTxt === '0' ? dspTxt = str : dspTxt = getDisplay() + str;
-    let wholeTxt = "";
-    let fraction = "";
+    dspTxt === '0' || dspTxt === "Number too large" ? dspTxt = str : dspTxt = getDisplay() + str;
     //If the number is larger than 3 digits, start inserting commas into it. 
-    if (dspTxt.length > 3){
+    if (dspTxt.length > 3 && dspTxt !== "Not a number"){
+        let wholeTxt = "";
+        let fraction = "";
         //Take the integer part of the number, we want to add seperating commas to it. 
         if (dspTxt.includes('.')){
             wholeTxt = dspTxt.slice(0,dspTxt.indexOf("."));
@@ -449,7 +449,9 @@ function setDisplay(str){
         wholeTxt = wholeTxt.join("");
         dspTxt = wholeTxt + fraction;
     }
+
     display.textContent = dspTxt;
+    setDisplayFont();
 }
 function getDisplay(){
     const display = document.getElementById("display");
@@ -468,6 +470,33 @@ function stripCommas(inputText){
     return stripped;
 }
 
+function setDisplayFont(){
+    const display = document.getElementById("display");
+    dspTxt = getDisplay();
+    if (dspTxt.length > 24){
+        displayError();
+    }
+    else if (dspTxt.length > 15){
+        display.style.fontSize = "25px";
+    }
+    else if (dspTxt.length > 11){
+        display.style.fontSize = "40px";
+    }
+    else {
+        display.style.fontSize = "56px";
+    }
+}
+
+function displayError() {
+    const display = document.getElementById("display");
+    display.textContent = "Number too large";
+    op1 = undefined;
+    op2 = undefined;
+    operatorPressed = false;
+    numberPressed = false;
+    previousOperand = undefined;
+
+}
 
 drawBasicCalculator();
 addEventListeners();
