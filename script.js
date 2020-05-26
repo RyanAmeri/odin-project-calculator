@@ -316,7 +316,20 @@ function addEventListeners(){
             bDot.disabled = false;
 
             if (event.target.id === 'bInverse'){
-                
+                if (op1){
+                    op2 = getDisplay();
+                    op2 = op2 * -1;
+                    clearDisplay();
+                    setDisplay(op2);
+                }
+                else {
+                    op1 = getDisplay();
+                    op1 = op1 * -1;
+                    clearDisplay();
+                    setDisplay(op1);
+                }
+                numberPressed = false;
+                operatorPressed = true;
             }
 
             //Handle percentage button. The behaviour is that of a simple calculator, not a scientific one
@@ -460,8 +473,15 @@ function setDisplay(str){
     const display = document.getElementById("display");
     let dspTxt = display.textContent;
     dspTxt === '0' || dspTxt === "Number too large" ? dspTxt = str : dspTxt = getDisplay() + str;
+    //Deal with negative numbers by setting a boolean value, removing the negative sign, and then adding it a
+    // the end when all the seperator proceccing has been done. 
+    let isNegative = false;
+    if (dspTxt.includes('-')){
+        isNegative = true;
+        dspTxt = dspTxt.slice(1);
+    }
     //If the number is larger than 3 digits, start inserting commas into it. 
-    if (dspTxt.length > 3 && dspTxt !== "Not a number"){
+    if (dspTxt.length > 3 && dspTxt !== "Not a number" && !dspTxt.includes('e')){
         let wholeTxt = "";
         let fraction = "";
         //Take the integer part of the number, we want to add seperating commas to it. 
@@ -478,6 +498,9 @@ function setDisplay(str){
         }
         wholeTxt = wholeTxt.join("");
         dspTxt = wholeTxt + fraction;
+    }
+    if (isNegative){
+        dspTxt = "-" + dspTxt;
     }
 
     display.textContent = dspTxt;
