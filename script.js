@@ -315,6 +315,33 @@ function addEventListeners(){
             //Re-enable the dot button
             bDot.disabled = false;
 
+            if (event.target.id === 'bInverse'){
+                
+            }
+
+            //Handle percentage button. The behaviour is that of a simple calculator, not a scientific one
+            if (event.target.id === 'bPercent'){
+                if (op1 && previousOperand && previousOperand !== 'bEqual'){
+                    op2 = getDisplay();
+                    op2 = round(op2/100,2);
+                    op2 = op1 * op2;
+                    clearDisplay();
+                    let res = operate(previousOperand, op1, op2);
+                    setDisplay(res);
+                    op1 = getDisplay();
+                }
+                else {
+                    op1 = getDisplay();
+                    clearDisplay();
+                    setDisplay(round(op1/100,2));
+                    op1 = getDisplay();
+
+                }
+                numberPressed = false;
+                operatorPressed = true
+                previousOperand = undefined;
+            }
+
             //Handle AC Button, clear everything
             if (event.target.id === 'bAC'){
                 clearDisplay();
