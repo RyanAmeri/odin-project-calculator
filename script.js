@@ -441,32 +441,122 @@ function addEventListeners(){
         }
         else if (nums.includes(event.target)) {
             //Handle when numbers are clicked
-            numberPressed = true;
-            //First let's make sure that the user can only enter one Dot ('.') character
-            if (event.target.id === 'bDot')
-            {
-                bDot.disabled = true;
-            }
-            // There are two cases, either the operator is pressed, or it's not. 
-            // If it is pressed, we clear the display, set the display anew 
-            // If operator is not pressed, we just add the number to display
-            if (operatorPressed){
-                clearDisplay();
-                setDisplay(event.target.textContent);
-                //This is to handle the empty button that's equivalent to 0
-                if (event.target.id === 'bEmpty')
-                    setDisplay(b0.textContent);
-                operatorPressed = false;
-
-            }
-            else {
-                setDisplay(event.target.textContent);
-                //This is to handle the empty button that's equivalent to 0
-                if (event.target.id === 'bEmpty')
-                    setDisplay(b0.textContent);
-            }    
+            handleNumberInput(event.target);
+    
         }
     });
+}
+
+function addKeyboardBindings(){
+    const operator = [...document.querySelectorAll('.opt')];
+    const nums = [...document.querySelectorAll('.num')];
+    const body = document.body;
+    body.addEventListener('keydown', event => {
+        if (!event.repeat){
+            if (!event.shiftKey){
+                switch(event.code) {
+                    case 'Digit0':
+                    case 'Numpad0': 
+                        document.getElementById("b0").click();
+                        break;
+                    case 'Digit1':
+                    case 'Numpad1': 
+                        document.getElementById("b1").click();
+                        break;
+                    case 'Digit2':
+                    case 'Numpad2': 
+                        document.getElementById("b2").click();
+                        break;
+                    case 'Digit3':
+                    case 'Numpad3': 
+                        document.getElementById("b3").click();
+                        break; 
+                    case 'Digit4':
+                    case 'Numpad4': 
+                        document.getElementById("b4").click();
+                        break;
+                    case 'Digit5':
+                    case 'Numpad5': 
+                        document.getElementById("b5").click();
+                        break;
+                    case 'Digit6':
+                    case 'Numpad6': 
+                        document.getElementById("b6").click();
+                        break;
+                    case 'Digit7':
+                    case 'Numpad7': 
+                        document.getElementById("b7").click();
+                        break; 
+                    case 'Digit8':
+                    case 'Numpad8': 
+                        document.getElementById("b8").click();
+                        break;
+                    case 'Digit9':
+                    case 'Numpad9': 
+                        document.getElementById("b9").click();
+                        break;        
+                }
+            }
+            switch(event.key) {
+                case '+': 
+                    document.getElementById("bAdd").click();
+                    break;
+                case '-': 
+                    document.getElementById("bSubtract").click();
+                    break;
+                case '*': 
+                    document.getElementById("bMultiply").click();
+                    break;
+                case '/': 
+                    document.getElementById("bDivide").click();
+                    break; 
+                case 'Enter': 
+                    document.getElementById("bEqual").click();
+                    break;
+                case '%': 
+                    document.getElementById("bPercent").click();
+                    break;
+                case 'Escape': 
+                    document.getElementById("bAC").click();
+                    break;
+                case 'Backspace': 
+                    let dspTxt = getDisplay();
+                    clearDisplay();
+                    dspTxt = dspTxt.slice(0, dspTxt.length -1 );
+                    setDisplay(dspTxt);
+                    break;
+            }
+        }
+
+    });
+
+}
+
+function handleNumberInput(e){
+    numberPressed = true;
+    //First let's make sure that the user can only enter one Dot ('.') character
+    if (e.id === 'bDot')
+    {
+        bDot.disabled = true;
+    }
+    // There are two cases, either the operator is pressed, or it's not. 
+    // If it is pressed, we clear the display, set the display anew 
+    // If operator is not pressed, we just add the number to display
+    if (operatorPressed){
+        clearDisplay();
+        setDisplay(e.textContent);
+        //This is to handle the empty button that's equivalent to 0
+        if (e.id === 'bEmpty')
+            setDisplay(b0.textContent);
+        operatorPressed = false;
+
+    }
+    else {
+        setDisplay(e.textContent);
+        //This is to handle the empty button that's equivalent to 0
+        if (e.id === 'bEmpty')
+            setDisplay(b0.textContent);
+    }
 }
 
 function setDisplay(str){
@@ -558,3 +648,4 @@ function round(value, decimals) {
 
 drawBasicCalculator();
 addEventListeners();
+addKeyboardBindings();
