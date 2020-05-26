@@ -12,7 +12,7 @@ Implementation of Odin Web 101 Project Calculator. The UI is inspired by macOS's
 * Extra Credit: I think it looks nice?
 * Extra Credit: The backspace button works. I didn't add a button to the layout as I wanted to remain faithful to the macOS calculator's layout, but pressing the backspace on the keyboard has the intended effect. Also users can change their mind and override a previous operation if they press a different operation instead. 
 * Extra Credit: Keyboard support added, both for numbers and operations, both using the number row as well as the numpad. 
-## Learnings: 
+## Learnings
 I'm not sure it's possible to list everything I have learnt during this project. From CSS Grid and animations, to lots of JavaScript functions. String manipulation, array methods, all where used in this. Most of all, I leanrt debugging in Chrome dev tools, setting break points and chasing variable values to see exactly where it was going off. 
 ## Shortcoming and Limitations
 1) Performance sufferes from multiple inter-related function calls. In particular code needs to be refactored to reduce calls to setDisplay() and getDisplay(). 
@@ -21,4 +21,4 @@ I'm not sure it's possible to list everything I have learnt during this project.
 4) I was not able to mimick the button click animation with keyboard entry. 
 5) The calculator can only show numbers upto and including 24 digits. This is to simplify dealing with text overflow. There are probably more elegant solutions. 
 ## Future plans
-Implement a Scientific and Programmer aalculator a la macOS. 
+Implement a Scientific and Programmer calculator a la macOS. 
