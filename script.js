@@ -37,11 +37,12 @@ function operate(operator, num1, num2){
             result = divide(num1, num2);
             break;
     }
-    if (isNaN(result))
-        result = "Not a number";
     if (!Number.isInteger(result)){
         result = round(result, 2);
     }
+    if (isNaN(result))
+        result = "Not a number";
+
     return result;
 }
 //Draw calculator with CSS in JS
@@ -312,8 +313,10 @@ function addEventListeners(){
 
             //Re-enable equal button
             bEqual.disabled = false;
+            bEqual.classList.remove("disabled");
             //Re-enable the dot button
             bDot.disabled = false;
+            bDot.classList.remove("disabled");
 
             if (event.target.id === 'bInverse'){
                 if (op1){
@@ -426,6 +429,7 @@ function addEventListeners(){
                     // disable equal button once it has been pressed once. Pressing it repeatedly has undefined behaviour
                     // and can cause errors
                     bEqual.disabled = true;
+                    bEqual.classList.toggle("disabled");
 
                     op2 = getDisplay();
                     let res = operate(previousOperand, op1, op2);
@@ -538,6 +542,7 @@ function handleNumberInput(e){
     if (e.id === 'bDot')
     {
         bDot.disabled = true;
+        bDot.classList.toggle("disabled");
     }
     // There are two cases, either the operator is pressed, or it's not. 
     // If it is pressed, we clear the display, set the display anew 
@@ -594,6 +599,7 @@ function setDisplay(str){
     }
 
     display.textContent = dspTxt;
+    display.style.animationPlayState = "initial";
     setDisplayFont();
 }
 function getDisplay(){
@@ -628,6 +634,9 @@ function setDisplayFont(){
     else {
         display.style.fontSize = "56px";
     }
+    display.classList.remove("animate");
+    void display.offsetWidth;
+    display.classList.add("animate");
 }
 
 function displayError() {

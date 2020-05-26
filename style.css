@@ -61,13 +61,43 @@ body{
     height: 100%;
 
   }
-  
+  .btns:active {
+    box-shadow: 0 0 transparent;
+    transform: translate(3px, 2px);
+ }
+
 
   #display {
     justify-self: end;
     align-self: end;
     font-size: 56px;
-    /* text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden; */
   }
+
+  @keyframes blinkingText{
+/*    0%{     color: #000;    } */
+      0%{    opacity: 0; }
+/*    60%{    color: transparent; }
+    99%{    color:transparent;  }
+    100%{   color: #000;    } */
+}
+
+  .disabled {
+    cursor: not-allowed;
+  }
+  .animate{
+    animation:blinkingText 0.3s linear 1;
+  }
+  #footer{
+      padding-top: 30px;
+      max-width: 574px;
+      min-width: 500px;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 10px; 
+
+  }
+#footer a:link,
+#footer a:visited,
+#footer a:hover {
+   color: #FF9F0B;
+}
